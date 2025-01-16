@@ -1,0 +1,156 @@
+/* Trailer page container */
+.trailer-container {
+    margin-top: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* YouTube video container - centered and responsive */
+.video-wrapper {
+    margin-bottom: 30px;
+    width: 100%;
+    
+    
+}
+.utube{
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.video-wrapper iframe {
+    width: 100%;
+    max-width: 1000px;
+    height: 1000px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Section for related movies */
+.related-movies-section {
+    margin-top: 20px;
+    color: #fff;
+}
+
+.related-movies-title {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Grid layout for related movies */
+.related-movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+    gap: 15px;
+    justify-content: center;
+    padding: 0;
+}
+
+/* Styling for related movie poster */
+.related-movie-poster {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+/* Hover effect for movie posters */
+.related-movie-poster:hover {
+    transform: scale(1.1);
+}
+
+/* Movie name styling */
+.related-movie-name {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* No content message styling */
+.no-video-text,
+.no-related-movies {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #bbb;
+}
+
+/* Responsive Design */
+
+/* For small devices (phones in portrait) */
+@media only screen and (max-width: 600px) {
+    .trailer-container {
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .video-wrapper iframe {
+        height: 250px;
+    }
+
+    .related-movies-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+
+    .related-movie-poster {
+        max-height: 180px;
+    }
+
+    .related-movie-name {
+        font-size: 0.85rem;
+    }
+}
+
+/* For medium devices (tablets) */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .trailer-container {
+        width: 90%;
+    }
+
+    .video-wrapper iframe {
+        height: 350px;
+    }
+
+    .related-movies-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+
+    .related-movie-poster {
+        max-height: 220px;
+    }
+
+    .related-movie-name {
+        font-size: 1rem;
+    }
+}
+
+/* For large devices (desktops) */
+@media only screen and (min-width: 1025px) {
+    .trailer-container {
+        width: 80%;
+    }
+
+    .video-wrapper iframe {
+        height: 500px;
+    }
+
+    .related-movies-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .related-movie-poster {
+        max-height: 300px;
+    }
+
+    .related-movie-name {
+        font-size: 1.1rem;
+    }
+}

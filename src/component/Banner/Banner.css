@@ -1,0 +1,162 @@
+/* Main Banner styles */
+.banner {
+  height: 90vh;
+  width: 100%;
+  margin-top: 40px;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 1s ease-in-out; /* Smooth transition */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.content {
+  margin-left: 30px;
+  margin-bottom: 50px;
+  color: white;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.banner_buttons {
+  margin-top: 20px;
+}
+
+.button {
+  cursor: pointer;
+  color: #fff;
+  background-color: rgba(51, 51, 51, 0.5);
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.description {
+  max-width: 45%;
+  line-height: 1.3;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.fade_bottom {
+  height: 7.4rem;
+  background-image: linear-gradient(
+    180deg,
+    transparent,
+    rgba(37, 37, 37, 0.61),
+    #111
+  );
+}
+
+/* Responsive Design */
+
+/* For small devices (phones in portrait) */
+@media only screen and (max-width: 600px) {
+  .banner {
+    height: 80vh; /* Reduce height for smaller screens */
+  }
+
+  .content {
+    margin-left: 15px; /* Adjust margin */
+    margin-bottom: 30px; /* Adjust bottom margin */
+  }
+
+  .title {
+    font-size: 2rem; /* Smaller title for mobile */
+  }
+
+  .banner_buttons {
+    margin-top: 15px;
+  }
+
+  .button {
+    padding: 8px 15px; /* Smaller buttons */
+    font-size: 0.9rem; /* Slightly smaller font size */
+  }
+
+  .description {
+    max-width: 100%; /* Full width for description */
+    font-size: 0.9rem; /* Smaller font size */
+    line-height: 1.2; /* Adjust line height */
+    margin-top: 15px;
+  }
+
+  .fade_bottom {
+    height: 5rem; /* Smaller fade effect on mobile */
+  }
+}
+
+/* For medium devices (tablets in portrait/landscape) */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .banner {
+    height: 85vh; /* Slightly smaller height for tablets */
+  }
+
+  .content {
+    margin-left: 20px;
+    margin-bottom: 40px;
+  }
+
+  .title {
+    font-size: 2.5rem; /* Medium size title */
+  }
+
+  .banner_buttons {
+    margin-top: 20px;
+  }
+
+  .button {
+    padding: 9px 18px; /* Adjust button size for tablets */
+  }
+
+  .description {
+    max-width: 60%; /* Increase width slightly */
+    font-size: 1rem;
+    line-height: 1.3;
+    margin-top: 20px;
+  }
+
+  .fade_bottom {
+    height: 6rem; /* Adjust fade effect */
+  }
+}
+
+/* For large devices (desktops) */
+@media only screen and (min-width: 1025px) {
+  .banner {
+    height: 90vh; /* Full height for desktops */
+  }
+
+  .content {
+    margin-left: 30px;
+    margin-bottom: 50px;
+  }
+
+  .title {
+    font-size: 3rem; /* Large title for desktop */
+  }
+
+  .banner_buttons {
+    margin-top: 20px;
+  }
+
+  .button {
+    padding: 10px 20px; /* Default button size */
+  }
+
+  .description {
+    max-width: 45%; /* Default width for description */
+    font-size: 1rem;
+    line-height: 1.3;
+    margin-top: 20px;
+  }
+
+  .fade_bottom {
+    height: 7.4rem; /* Default fade effect */
+  }
+}
