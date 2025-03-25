@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import "./NavBar.css";
 import Logo from '../Logo/Logo';
 
-function NavBar({ onSearch }) {
+function NavBar() {
     const [show, setShow] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
+    const isGenrePage = location.pathname === '/genre';
 
     useEffect(() => {
         window.addEventListener("scroll", () => {
@@ -24,7 +26,6 @@ function NavBar({ onSearch }) {
     const handleSearch = (e) => {
         const query = e.target.value;
         setSearchQuery(query);
-        onSearch(query);
         
         if (query.trim()) {
             navigate('/search', { state: { searchQuery: query } });
@@ -34,7 +35,6 @@ function NavBar({ onSearch }) {
     const handleHomeClick = () => {
         navigate('/');
         setSearchQuery('');
-        onSearch('');
     };
 
     return (
@@ -48,13 +48,15 @@ function NavBar({ onSearch }) {
             </div>
             <div className="nav-right">
                 <div className="controls">
-                    <input
-                        type="text"
-                        className="search-input"
-                        placeholder="Search movies..."
-                        value={searchQuery}
-                        onChange={handleSearch}
-                    />
+                    {!isGenrePage && (
+                        <input
+                            type="text"
+                            className="search-input"
+                            placeholder="Search movies..."
+                            value={searchQuery}
+                            onChange={handleSearch}
+                        />
+                    )}
                 </div>
             </div>
         </div>
