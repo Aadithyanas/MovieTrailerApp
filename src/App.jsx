@@ -1,29 +1,46 @@
 import React from 'react';
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
 import NavBar from './component/NavBar/NavBar';
 import Banner from './component/Banner/Banner';
 import RowPost from './component/RowPost/RowPost';
-import { TrailerProvider } from './context/TrailerContext'; // Import the TrailerContext provider
-import Trailer from './component/MovieTrailer/Trailer'; // Your trailer component
-import { actionUrl, comedyUrl, DocumetUrl, horrorUrl, originalUrl, romanceUrl } from './constants/Constant';
+import SearchResults from './component/SearchResults/SearchResults';
+import GenrePage from './component/GenrePage/GenrePage';
+import { TrailerProvider } from './contexts/TrailerContext';
+import TrailerModal from './component/TrailerModal/TrailerModal';
+import Footer from './component/Footer/Footer';
+import { API_KEY } from './constants/Constant';
+
+// Define URLs here since there might be an issue with the module import
+const originals = `/discover/tv?api_key=${API_KEY}&with_networks=213`;
+const action = `/discover/movie?api_key=${API_KEY}&with_genres=28`;
+const comedy = `/discover/movie?api_key=${API_KEY}&with_genres=35`;
+const horror = `/discover/movie?api_key=${API_KEY}&with_genres=27`;
+const romance = `/discover/movie?api_key=${API_KEY}&with_genres=10749`;
+const documentaries = `/discover/movie?api_key=${API_KEY}&with_genres=99`;
 
 function App() {
   return (
-    <TrailerProvider> {/* Wrap your components with the TrailerProvider */}
+    <TrailerProvider>
       <div className="App">
         <NavBar />
-        <Banner />
-        
-        {/* Add RowPost components, passing necessary props */}
-        <RowPost url={originalUrl} title="Netflix Originals" />
-        <RowPost ismall url={comedyUrl} title="Comedy" />
-        <RowPost ismall url={actionUrl} title="Action" />
-        <RowPost ismall url={romanceUrl} title="Romance" />
-        <RowPost ismall url={horrorUrl} title="Horror" />
-        <RowPost ismall url={DocumetUrl} title="Documentary" />
-        
-        {/* You can add the Trailer component here for rendering the trailer */}
-        
+        <Routes>
+          <Route path="/" element={
+            <>
+              <Banner />
+              <RowPost title="Netflix Originals" url={originals} isOriginals={true} genreId="213" />
+              <RowPost title="Action" url={action} genreId="28" />
+              <RowPost title="Comedy" url={comedy} genreId="35" />
+              <RowPost title="Horror" url={horror} genreId="27" />
+              <RowPost title="Romance" url={romance} genreId="10749" />
+              <RowPost title="Documentaries" url={documentaries} genreId="99" />
+            </>
+          } />
+          <Route path="/search" element={<SearchResults />} />
+          <Route path="/genre" element={<GenrePage />} />
+        </Routes>
+        <TrailerModal />
+        <Footer />
       </div>
     </TrailerProvider>
   );

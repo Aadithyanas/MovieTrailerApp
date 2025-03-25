@@ -1,93 +1,171 @@
 /* Main Banner styles */
 .banner {
-  height: 90vh;
-  width: 100%;
-  margin-top: 40px;
+  position: relative;
+  color: white;
+  height: 500px;
   background-size: cover;
-  background-position: center;
-  transition: background-image 1s ease-in-out; /* Smooth transition */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  background-position: center center;
+  transition: all 0.8s ease-in-out;
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+.banner.loaded {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .content {
-  margin-left: 30px;
-  margin-bottom: 50px;
-  color: white;
+  padding: 140px 40px;
+  height: 190px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+
+.banner.loaded .content {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .title {
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: 800;
+  padding-bottom: 0.3rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.description {
+  width: 45rem;
+  line-height: 1.3;
+  padding-top: 1rem;
+  font-size: 1rem;
+  height: 80px;
+  max-width: 100%;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease-out 0.3s;
+}
+
+.banner.loaded .description {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .banner_buttons {
+  display: flex;
+  gap: 15px;
   margin-top: 20px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease-out 0.4s;
+}
+
+.banner.loaded .banner_buttons {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .button {
   cursor: pointer;
-  color: #fff;
-  background-color: rgba(51, 51, 51, 0.5);
+  color: white;
+  outline: none;
   border: none;
-  padding: 10px 20px;
-  margin-right: 10px;
-  font-weight: bold;
+  font-weight: 700;
+  border-radius: 5px;
+  padding: 0.5rem 2rem;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(51, 51, 51, 0.5);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.description {
-  max-width: 45%;
-  line-height: 1.3;
-  font-size: 1rem;
-  margin-top: 20px;
+.button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  transition: transform 0.4s ease;
+}
+
+.button:hover::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.button:hover {
+  background-color: #e6e6e6;
+  color: black;
+  transform: scale(1.05);
+}
+
+.button i {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.button:hover i {
+  transform: scale(1.1);
+}
+
+.button:first-child {
+  background-color: #ff4d4d;
+}
+
+.button:first-child:hover {
+  background-color: #ff3333;
+  color: white;
 }
 
 .fade_bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   height: 7.4rem;
-  background-image: linear-gradient(
-    180deg,
-    transparent,
-    rgba(37, 37, 37, 0.61),
-    #111
-  );
+  background-image: linear-gradient(180deg, transparent, rgba(17, 17, 17, 0.6), #111);
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.banner.loaded .fade_bottom {
+  opacity: 1;
 }
 
 /* Responsive Design */
 
 /* For small devices (phones in portrait) */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   .banner {
-    height: 80vh; /* Reduce height for smaller screens */
+    height: 400px;
   }
 
   .content {
-    margin-left: 15px; /* Adjust margin */
-    margin-bottom: 30px; /* Adjust bottom margin */
+    padding: 100px 20px;
   }
 
   .title {
-    font-size: 2rem; /* Smaller title for mobile */
-  }
-
-  .banner_buttons {
-    margin-top: 15px;
-  }
-
-  .button {
-    padding: 8px 15px; /* Smaller buttons */
-    font-size: 0.9rem; /* Slightly smaller font size */
+    font-size: 2rem;
   }
 
   .description {
-    max-width: 100%; /* Full width for description */
-    font-size: 0.9rem; /* Smaller font size */
-    line-height: 1.2; /* Adjust line height */
-    margin-top: 15px;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 100%;
   }
 
-  .fade_bottom {
-    height: 5rem; /* Smaller fade effect on mobile */
+  .button {
+    padding: 0.4rem 1.5rem;
+    font-size: 0.9rem;
   }
 }
 

@@ -1,17 +1,48 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
+import axios from '../axios';
+import { API_KEY } from '../constants/Constant';
 
 // Create a Context for the trailer state
-export const TrailerContext = createContext();
+const TrailerContext = createContext();
 
 // Create a Provider component
-export const TrailerProvider = ({ children }) => {
-  const [trailerId, setTrailerId] = useState(''); // State for storing trailer ID
-  const [movieType, setMovieType] = useState(''); // State for storing the type of the movie
-  const [movieList, setMovieList] = useState([]); // State for storing the list of movies
+export function TrailerProvider({ children }) {
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [trailerKey, setTrailerKey] = useState(null);
+
+  const fetchTrailer = async (movie) => {
+    try {
+      const response = await axios.get(`/movie/${movie.id}/videos?api_key=${API_KEY}&language=en-US`);
+      if (response.data.results.length !== 0) {
+        setTrailerKey(response.data.results[0].key);
+      } else {
+        alert('No trailer available for this movie');
+      }
+    } catch (error) {
+      console.error('Error fetching trailer:', error);
+      alert('Error loading trailer');
+    }
+  };
+
+  const value = {
+    selectedMovie,
+    setSelectedMovie,
+    trailerKey,
+    setTrailerKey,
+    fetchTrailer
+  };
 
   return (
-    <TrailerContext.Provider value={{ trailerId, setTrailerId, movieType, setMovieType, movieList, setMovieList }}>
+    <TrailerContext.Provider value={value}>
       {children}
     </TrailerContext.Provider>
   );
-};
+}
+
+export function useTrailer() {
+  const context = useContext(TrailerContext);
+  if (!context) {
+    throw new Error('useTrailer must be used within a TrailerProvider');
+  }
+  return context;
+}

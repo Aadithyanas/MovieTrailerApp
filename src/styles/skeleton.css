@@ -1,0 +1,273 @@
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.skeleton {
+    background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite linear;
+}
+
+/* Banner Skeleton */
+.banner-skeleton {
+    height: 80vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-skeleton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite linear;
+}
+
+.banner-content-skeleton {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+}
+
+.banner-title-skeleton {
+    width: 60%;
+    height: 40px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.banner-description-skeleton {
+    width: 80%;
+    height: 20px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.banner-description-skeleton:nth-child(2) {
+    width: 60%;
+}
+
+.banner-buttons-skeleton {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.banner-button-skeleton {
+    width: 120px;
+    height: 40px;
+    border-radius: 4px;
+}
+
+/* Movie Card Skeleton */
+.movie-card-skeleton {
+    width: 100%;
+    height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.movie-card-skeleton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite linear;
+}
+
+.movie-info-skeleton {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+}
+
+.movie-title-skeleton {
+    width: 80%;
+    height: 24px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+}
+
+.movie-rating-skeleton {
+    width: 40%;
+    height: 20px;
+    border-radius: 4px;
+}
+
+/* Row Skeleton */
+.row-skeleton {
+    padding: 20px 0;
+}
+
+.row-title-skeleton {
+    width: 200px;
+    height: 32px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.row-posters-skeleton {
+    display: flex;
+    gap: 10px;
+    overflow-x: hidden;
+    padding: 10px 0;
+}
+
+/* Grid Skeleton */
+.movies-grid-skeleton {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Search Results Skeleton */
+.search-results-skeleton {
+    padding: 20px;
+}
+
+.search-header-skeleton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-title-skeleton {
+    width: 200px;
+    height: 32px;
+    border-radius: 4px;
+}
+
+.search-filters-skeleton {
+    display: flex;
+    gap: 15px;
+}
+
+.search-filter-skeleton {
+    width: 120px;
+    height: 36px;
+    border-radius: 4px;
+}
+
+.search-grid-skeleton {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.search-card-skeleton {
+    width: 100%;
+    height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.search-card-skeleton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite linear;
+}
+
+.search-card-info-skeleton {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+}
+
+.search-card-title-skeleton {
+    width: 80%;
+    height: 24px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+}
+
+.search-card-details-skeleton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-card-rating-skeleton {
+    width: 40%;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.search-card-year-skeleton {
+    width: 30%;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.search-load-more-skeleton {
+    width: 150px;
+    height: 40px;
+    margin: 20px auto;
+    border-radius: 4px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .banner-skeleton {
+        height: 60vh;
+    }
+
+    .movie-card-skeleton {
+        height: 250px;
+    }
+
+    .movies-grid-skeleton {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+
+    .search-grid-skeleton {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+
+    .search-card-skeleton {
+        height: 250px;
+    }
+
+    .search-filters-skeleton {
+        flex-wrap: wrap;
+    }
+
+    .search-filter-skeleton {
+        width: 100px;
+    }
+} 
