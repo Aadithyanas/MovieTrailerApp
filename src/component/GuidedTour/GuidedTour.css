@@ -1,17 +1,12 @@
 @keyframes pulse {
     0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7);
+        box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.4);
     }
-    
     70% {
-        transform: scale(1.05);
-        box-shadow: 0 0 0 10px rgba(255, 77, 77, 0);
+        box-shadow: 0 0 0 10px rgba(229, 9, 20, 0);
     }
-    
     100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(255, 77, 77, 0);
+        box-shadow: 0 0 0 0 rgba(229, 9, 20, 0);
     }
 }
 
@@ -24,7 +19,7 @@
     }
 }
 
-@keyframes fade-in {
+@keyframes fade {
     from {
         opacity: 0;
         transform: translateY(10px);
@@ -32,6 +27,17 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
     }
 }
 
@@ -64,21 +70,116 @@
 }
 
 .react-joyride__tooltip {
+    background-color: #141414 !important;
     border-radius: 8px !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
-    z-index: 2000 !important;
+    animation: slideIn 0.3s ease-in-out;
 }
 
 .react-joyride__spotlight {
     border-radius: 8px !important;
-    z-index: 1999 !important;
+    animation: pulse 2s infinite;
+    box-shadow: 0 0 0 4px rgba(229, 9, 20, 0.5) !important;
 }
 
+/* Custom styles for specific tour steps */
+[data-tour-elem="tooltip"] {
+    max-width: 350px !important;
+}
+
+/* Ensure tooltips are always visible */
+.react-joyride__tooltip {
+    z-index: 9999 !important;
+}
+
+/* Ensure spotlight is above other elements */
+.react-joyride__spotlight {
+    z-index: 9998 !important;
+}
+
+/* Custom styles for the overlay */
 .react-joyride__overlay {
-    z-index: 1998 !important;
+    background-color: rgba(0, 0, 0, 0.85) !important;
+    animation: fade 0.3s ease-in-out;
 }
 
-/* Ensure tooltips are visible */
-#react-joyride-portal {
-    z-index: 2001 !important;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    [data-tour-elem="tooltip"] {
+        max-width: 280px !important;
+    }
+    
+    .react-joyride__tooltip {
+        margin: 0 16px !important;
+    }
+    
+    .react-joyride__button {
+        padding: 8px 16px !important;
+        font-size: 14px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    [data-tour-elem="tooltip"] {
+        max-width: 250px !important;
+        font-size: 13px !important;
+    }
+}
+
+/* Overlay Styles */
+.react-joyride__overlay {
+    z-index: 9997 !important;
+}
+
+/* Button Styles */
+.react-joyride__button {
+    transition: all 0.3s ease !important;
+    border-radius: 4px !important;
+}
+
+.react-joyride__button--primary {
+    background-color: #e50914 !important;
+    color: white !important;
+    animation: pulse 2s infinite;
+}
+
+.react-joyride__button--primary:hover {
+    background-color: #f40612 !important;
+    transform: scale(1.05);
+}
+
+.react-joyride__button--secondary {
+    color: #e50914 !important;
+}
+
+.react-joyride__button--secondary:hover {
+    color: #f40612 !important;
+    transform: scale(1.05);
+}
+
+/* Progress Styles */
+.react-joyride__progress {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 4px !important;
+}
+
+.react-joyride__progress-bar {
+    background-color: #e50914 !important;
+    transition: width 0.3s ease !important;
+}
+
+/* Interactive Elements */
+.react-joyride__spotlight--clickable {
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+.react-joyride__spotlight--clickable:hover {
+    transform: scale(1.02);
+}
+
+/* Accessibility */
+.react-joyride__tooltip *:focus {
+    outline: 2px solid #e50914 !important;
+    outline-offset: 2px !important;
 } 

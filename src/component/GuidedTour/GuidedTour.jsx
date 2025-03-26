@@ -4,89 +4,55 @@ import './GuidedTour.css';
 
 const GuidedTour = () => {
     const [run, setRun] = useState(false);
-    const [steps, setSteps] = useState([]);
+    const [steps] = useState([
+        {
+            target: '.navbar',
+            content: '👋 Welcome to MovieHub! Let\'s explore your new movie destination.',
+            placement: 'bottom',
+            disableBeacon: true,
+            spotlightPadding: 5,
+            spotlightClicks: true
+        },
+        {
+            target: '.search-input',
+            content: '🔍 Type here to search movies. Try it out!',
+            placement: 'bottom',
+            spotlightClicks: true,
+            disableBeacon: true
+        },
+        {
+            target: '.banner-content',
+            content: '🎬 Featured movies with trailers. Click the Play button to watch!',
+            placement: 'bottom',
+            spotlightClicks: true,
+            disableBeacon: true
+        },
+        {
+            target: '.posters',
+            content: '👆 Drag or click to explore more movies. Each card reveals exciting trailers!',
+            placement: 'top',
+            spotlightClicks: true,
+            disableBeacon: true
+        }
+    ]);
 
     useEffect(() => {
-        // Wait for elements to be rendered
-        setTimeout(() => {
-            setSteps([
-                {
-                    target: '.logo',
-                    content: 'Welcome to MovieHub! Your ultimate destination for exploring movies and trailers.',
-                    disableBeacon: true,
-                    placement: 'bottom',
-                    styles: {
-                        tooltip: {
-                            animation: 'fade-in 0.5s ease'
-                        }
-                    }
-                },
-                {
-                    target: '.search-input',
-                    content: 'Search for your favorite movies here. Try typing a movie title!',
-                    placement: 'bottom',
-                    spotlightPadding: 5
-                },
-                {
-                    target: '.sort-select',
-                    content: 'Sort movies by popularity, rating, or release date.',
-                    placement: 'bottom'
-                },
-                {
-                    target: '.filter-select',
-                    content: 'Filter movies by genre to find exactly what you\'re looking for.',
-                    placement: 'bottom'
-                },
-                {
-                    target: '.poster',
-                    content: '🎬 Click on any movie poster to watch its trailer! Try it now!',
-                    placement: 'center',
-                    spotlightPadding: 10,
-                    styles: {
-                        tooltip: {
-                            animation: 'bounce 0.5s ease infinite'
-                        }
-                    }
-                }
-            ]);
-
-            // Check if it's the user's first visit
+        // Wait for components to mount
+        const timer = setTimeout(() => {
             const hasSeenTour = localStorage.getItem('hasSeenTour');
             if (!hasSeenTour) {
                 setRun(true);
-                // Add pulse animation class to the first movie card
-                const firstCard = document.querySelector('.poster');
-                if (firstCard) {
-                    firstCard.classList.add('pulse-animation');
-                }
             }
-        }, 1000); // Wait for 1 second to ensure elements are rendered
+        }, 1000);
+
+        return () => clearTimeout(timer);
     }, []);
 
     const handleJoyrideCallback = (data) => {
-        const { status, index } = data;
-        
-        // Remove pulse animation when moving to next step
-        if (index === 4) {
-            const firstCard = document.querySelector('.poster');
-            if (firstCard) {
-                firstCard.classList.add('pulse-animation');
-            }
-        } else {
-            const firstCard = document.querySelector('.poster');
-            if (firstCard) {
-                firstCard.classList.remove('pulse-animation');
-            }
-        }
-
+        const { status } = data;
         if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
             setRun(false);
             localStorage.setItem('hasSeenTour', 'true');
-            // Remove any remaining animations
-            const firstCard = document.querySelector('.poster');
-            if (firstCard) {
-                firstCard.classList.remove('pulse-animation');
-            }
         }
     };
 
@@ -97,34 +63,59 @@ const GuidedTour = () => {
             continuous={true}
             showProgress={true}
             showSkipButton={true}
-            hideCloseButton={false}
-            spotlightClicks={true}
             callback={handleJoyrideCallback}
             styles={{
                 options: {
-                    primaryColor: '#ff4d4d',
+                    primaryColor: '#e50914',
                     backgroundColor: '#141414',
-                    textColor: '#fff',
+                    textColor: '#ffffff',
                     arrowColor: '#141414',
-                    zIndex: 1000,
-                },
-                spotlight: {
-                    backgroundColor: 'rgba(255, 77, 77, 0.1)'
+                    overlayColor: 'rgba(0, 0, 0, 0.85)',
+                    zIndex: 9999,
+                    spotlightAnimation: 'pulse 2s infinite',
+                    spotlightBorderRadius: '8px',
+                    spotlightPadding: 5,
+                    tooltipAnimation: 'fade 0.3s ease-in-out',
+                    buttonNext: {
+                        backgroundColor: '#e50914',
+                        fontSize: '14px',
+                        padding: '8px 16px',
+                        animation: 'pulse 2s infinite'
+                    }
                 },
                 tooltip: {
                     borderRadius: '8px',
-                    fontSize: '16px'
+                    fontSize: '14px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
                 },
                 buttonNext: {
-                    backgroundColor: '#ff4d4d',
-                    borderRadius: '4px',
-                    padding: '8px 16px'
+                    backgroundColor: '#e50914',
+                    fontSize: '14px',
+                    padding: '8px 16px',
+                    transition: 'all 0.3s ease'
                 },
                 buttonBack: {
+                    color: '#e50914',
                     marginRight: '10px',
-                    color: '#ff4d4d'
+                    transition: 'all 0.3s ease'
+                },
+                buttonSkip: {
+                    color: '#808080',
+                    transition: 'all 0.3s ease'
+                },
+                spotlight: {
+                    backgroundColor: 'transparent',
+                    borderRadius: '8px',
+                    boxShadow: '0 0 0 4px rgba(229, 9, 20, 0.5)'
                 }
             }}
+            floaterProps={{
+                disableAnimation: false
+            }}
+            spotlightPadding={0}
+            disableOverlayClose={true}
+            disableScrolling={true}
+            spotlightClicks={true}
         />
     );
 };

@@ -9,6 +9,7 @@ import GenrePage from './component/GenrePage/GenrePage';
 import { TrailerProvider } from './contexts/TrailerContext';
 import TrailerModal from './component/TrailerModal/TrailerModal';
 import Footer from './component/Footer/Footer';
+import GuidedTour from './component/GuidedTour/GuidedTour';
 import { API_KEY } from './constants/Constant';
 
 // Define URLs here since there might be an issue with the module import
@@ -23,6 +24,7 @@ function App() {
   return (
     <TrailerProvider>
       <div className="App">
+        <GuidedTour />
         <NavBar />
         <Routes>
           <Route path="/" element={
